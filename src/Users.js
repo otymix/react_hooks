@@ -16,13 +16,15 @@ function Users(props) {
       : ""
   )
 
-  const JSX = toShow.map((toShow) => <li>{toShow}</li>)
+  const JSX = toShow.map((toShow, key) => (
+    <li key={key} style={{ listStyleType: "none" }}>
+      {toShow}
+    </li>
+  ))
   return (
     <div className="Users">
       <p>Users</p>
-      <ul>
-        <li style={{ listStyleType: "none" }}>{JSX}</li>
-      </ul>
+      <ul>{JSX}</ul>
     </div>
   )
 }
