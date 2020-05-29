@@ -16,22 +16,26 @@ function Search() {
     setshowResult((showResult) => true)
   }
 
-  React.useEffect(() => {
-    let users = axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => {
-        console.log(res.data)
-        setData(res.data)
-      })
-      .catch((err) => console.log("Error ", err))
-  }, [])
+  //let url = "https://jsonplaceholder.typicode.com/users"
+
+  //USE OF PERSONALIZED UseEffect
+
+  const UseFetch = (url) => {
+    React.useEffect(() => {
+      let users = axios
+        .get(url)
+        .then((res) => {
+          console.log("fetched data", res.data)
+          setData(res.data)
+        })
+        .catch((err) => console.log("Error ", err))
+    }, [url])
+  }
+
+  UseFetch("https://jsonplaceholder.typicode.com/users")
   return (
     <div className="Search">
       <header className="App-header">
-        <p>Name to search</p>
-
-        {showResult && <Users usrs={data} searched={input} />}
-
         <form onSubmit={(e) => handleSubmit(e)}>
           <label>
             Name :
@@ -43,6 +47,7 @@ function Search() {
           </label>
           <input type="submit" value="search" />
         </form>
+        {showResult && <Users usrs={data} searched={input} />}
       </header>
     </div>
   )
