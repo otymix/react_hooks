@@ -1,24 +1,16 @@
 import React, { useState } from "react"
 
 import "./App.css"
-import Counter from "./Counter"
+import Search from "./Search"
 
 function App() {
   const [show, setShow] = useState(false)
 
-  const handleToggle = () => {
-    console.log("Toggle Clicked")
-    console.log("SHOW", !show)
-    setShow((show) => !show)
-  }
-
   return (
     <div className="App">
       <header className="App-header">
-        <p>Hooks Counter</p>
-
-        <button onClick={handleToggle}>Toggle</button>
-        {show && <Counter />}
+        <p>Users Search</p>
+        {true && <Search />}
       </header>
     </div>
   )
